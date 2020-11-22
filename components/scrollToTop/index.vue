@@ -52,8 +52,8 @@
 <style lang="scss">
   .scrollToTop {
     position: fixed;
-    bottom: 60px;
-    right: 150px;
+    bottom: 100px;
+    right: 100px;
 
     display: flex;
     align-items: center;

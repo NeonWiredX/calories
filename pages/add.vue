@@ -1,10 +1,10 @@
 <template>
   <div class="page" id="#main">
     <div class="container">
-        <h2>Добав</h2>
-        add
-        <button type="button" @click="addFood({})">add</button>
-
+      <h2 class="title_list">Добавить</h2>
+      <div class="add">
+          <button type="button" @click="addFood(e)">asdfsdf</button>
+      </div>
     </div>
 
     <bottomMenu />
@@ -21,9 +21,13 @@
     components:{
       bottomMenu
     },
+
+
     data() {
       return {
-
+        categories: [],
+        products: [],
+        selectedProduct : null,
       }
     },
 
@@ -34,7 +38,8 @@
           squirrels: 100,
           fats:100,
           carbons: 100,
-          calories:100
+          calories:100,
+          selectedWeight: 100
         });
       }
    },
@@ -52,5 +57,13 @@
 </script>
 
 <style lang="scss">
-
+.title_list {
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+.add{
+  background: white;
+  height: calc(100% - 175px);
+}
 </style>
