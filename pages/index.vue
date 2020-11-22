@@ -3,7 +3,8 @@
     <div class="container">
       <div class="page__content"
            id="page__content">
-          INDEX
+          moved steps {{steps}}<br>
+          spended calories {{getCalories}}
       </div>
     </div>
 
@@ -35,13 +36,35 @@
 
     data() {
       return {
-
+        watchId : null,
+        steps: 0,
+      }
+    },
+    mounted() {
+      this.watchId = navigator.geolocation.watchPosition(this.gotPosition, this.errorGeo, {'enableHighAccuracy':true,'timeout':10000,'maximumAge':20000});
+    },
+    computed: {
+      getCalories(){
+        return this.steps*0.0736;
       }
     },
 
 
     methods: {
-
+       gotPosition(geo){
+         this.steps += geo.coords.speed / 0.762;
+       },
+      errorGeo(err){
+        if(err.code==1){
+          alert("User denied geolocation.");
+        } else if(err.code==2){
+          alert("Position unavailable.");
+        } else if(err.code==3){
+          alert("Timeout expired.");
+        } else {
+          alert("ERROR:"+ err.message);
+        }
+      }
     },
 
     head() {
