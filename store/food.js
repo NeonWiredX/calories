@@ -21,5 +21,15 @@ export const actions = {
 export const getters = {
   getFood(state) {
     return state.food
+  },
+  getCalories(state){
+    var calories = state.food.reduce(function (acc,curr){
+      return acc+ (+curr.calories/1000*curr.selectedWeight);
+    },0);
+    return (calories==0)?calories:100;
+  },
+  getNeededSteps(state){
+
+    return 100;
   }
 };
