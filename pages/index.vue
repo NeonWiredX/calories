@@ -50,10 +50,21 @@ export default {
     }
   },
   mounted() {
-    this.watchId = navigator.geolocation.watchPosition(this.gotPosition, this.errorGeo, {
-      'enableHighAccuracy': true,
-      'timeout': 10000,
-      'maximumAge': 20000
+    var that=this;
+    navigator.permissions.query({name:'geolocation'}).then(function(result) {
+      if (result.state == 'granted') {
+        that.watchId = navigator.geolocation.watchPosition(this.gotPosition, this.errorGeo, {
+          'enableHighAccuracy': true,
+          'timeout': 10000,
+          'maximumAge': 20000
+        });
+      } else if (result.state == 'prompt') {
+        that.watchId = navigator.geolocation.watchPosition(this.gotPosition, this.errorGeo, {
+          'enableHighAccuracy': true,
+          'timeout': 10000,
+          'maximumAge': 20000
+        });
+      }
     });
   },
   computed: {
