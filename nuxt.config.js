@@ -14,7 +14,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: '%s' || process.env.npm_package_name,
+    title: 'Calories' || process.env.npm_package_name,
     meta: [
       { charset: 'utf-8' },
       {name: 'viewport', content: 'width=980, initial-scale=1'},
@@ -94,6 +94,11 @@ export default {
     icon: false,
     meta: {
       nativeUI: true
+    },
+    manifest: {
+      name: 'Calories',
+      lang: 'ru',
+      useWebmanifestExtension: false
     }
   },
   /*

@@ -1,8 +1,8 @@
 {
-  "name": "myHome",
+  "name": "my-home",
   "version": "1.0.0",
-  "description": "My sweet Nuxt.js project",
-  "author": "Nikolay Shyvaev",
+  "description": "Calories project",
+  "author": "Vladislav",
   "private": true,
   "scripts": {
     "dev": "nuxt",
