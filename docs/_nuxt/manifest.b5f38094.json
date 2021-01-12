@@ -1,0 +1,10 @@
+{
+  "name": "myHome",
+  "short_name": "myHome",
+  "description": "My sweet Nuxt.js project",
+  "icons": [],
+  "start_url": "/calories/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en"
+}

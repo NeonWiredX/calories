@@ -88,7 +88,14 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/pwa',
   ],
+  pwa: {
+    icon: false,
+    meta: {
+      nativeUI: true
+    }
+  },
   /*
   ** Nuxt.js modules
   */
