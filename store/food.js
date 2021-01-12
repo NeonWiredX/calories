@@ -30,6 +30,6 @@ export const getters = {
   },
   getNeededSteps(state){
 
-    return 100;
+    return 500;
   }
 };

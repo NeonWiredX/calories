@@ -7,8 +7,8 @@
           <template>
             <radial-progress-bar :diameter=400
                                  :completed-steps=steps
-                                 :total-steps=getNeededSteps>
-              <p>Пройдено шагов: {{ totalSteps }}</p>
+                                 :total-steps=getTotalSteps>
+              <p>Пройдено шагов: {{ steps }}</p>
               <p>Потрачено калорий: {{ getCalories }}</p>
             </radial-progress-bar>
           </template>
@@ -47,6 +47,7 @@ export default {
     return {
       watchId: null,
       steps: 0,
+
     }
   },
   mounted() {
@@ -62,6 +63,9 @@ export default {
     },
     getNeededCalories(){
       return this.$store.getters['food/getCalories'];
+    },
+    getTotalSteps(){
+      return this.$store.getters['food/getNeededSteps'];
     }
   },
 
@@ -72,7 +76,7 @@ export default {
     },
     widthProgress() {
       if (window == undefined) {
-        return 400;
+        return 600;
       }
       return document.querySelector('#page__content')?.offsetWidth;
     },
