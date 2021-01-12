@@ -17,7 +17,7 @@ export default {
     title: 'Calories' || process.env.npm_package_name,
     meta: [
       { charset: 'utf-8' },
-      {name: 'viewport', content: 'width=980, initial-scale=1'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       {name: "msapplication-TileColor", content: "#ffffff"},
       {name: "msapplication-config", content: "/favicon/browserconfig.xml"},
