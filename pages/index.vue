@@ -76,7 +76,7 @@ export default {
     },
     widthProgress() {
       if (window == undefined) {
-        return 600;
+        return 400;
       }
       return document.querySelector('#page__content')?.offsetWidth;
     },
