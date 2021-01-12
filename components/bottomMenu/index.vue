@@ -72,9 +72,8 @@ export default {
   display: block;
   width: 100%;
   max-width: 820px;
-  margin: 0 auto;
+  margin: 65px auto;
   justify-content: space-between;
-
 
   &__wrapper {
 
@@ -90,11 +89,31 @@ export default {
   }
 
   &__item {
-    width: 100px;
     list-style-type: none;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 5px;
+    cursor: pointer;
+
+    a {
+      max-width: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      border: 8px solid white;
+      padding: 15px;
+      transition: all 0.3s ease;
+
+      &:hover, &:focus, &.nuxt-link-exact-active {
+        border-color: darken($secondaryColor, 10%);
+      }
+
+      @include below(768px) {
+        padding: 10px;
+        max-width: 80px;
+        border: 6px solid white;
+      }
+    }
   }
 
   &__tab {

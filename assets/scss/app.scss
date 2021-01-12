@@ -85,7 +85,7 @@ body {
     color: $black;
     line-height: 1.4;
   //  background-color: #DEE3E9;
-    overflow-y: scroll;
+  //  overflow-y: scroll;
 
 
 }
@@ -160,14 +160,11 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-
-
-//
-//.page-enter-active, .page-leave-active {
-//    transition: opacity .2s;
-//}
-//.page-enter, .page-leave-active {
-//    opacity: 0;
-//}
+.page-enter-active, .page-leave-active {
+    transition: opacity .2s;
+}
+.page-enter, .page-leave-active {
+    opacity: 0;
+}
 
 

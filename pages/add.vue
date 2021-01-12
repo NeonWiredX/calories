@@ -13,16 +13,16 @@
             </tr>
             <tr>
               <td class="list__summary__item__wrapper">
-                <div class="list__summary__item">{{ ((selectedItem || {} ).molecules || {}).proteins }}</div>
+                <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).proteins }}</div>
               </td>
               <td class="list__summary__item__wrapper">
                 <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).fats }}</div>
               </td>
               <td class="list__summary__item__wrapper">
-                <div class="list__summary__item">{{ ((selectedItem|| {}).molecules || {}).carbonhydrates }}</div>
+                <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).carbonhydrates }}</div>
               </td>
               <td class="list__summary__item__wrapper">
-                <div class="list__summary__item">{{ (selectedItem|| {}).cCal }}</div>
+                <div class="list__summary__item">{{ (selectedItem || {}).cCal }}</div>
               </td>
             </tr>
             <tr>
@@ -32,28 +32,32 @@
             </tr>
           </table>
         </div>
+        <h3 class="category__title">Выберите категорию: </h3>
         <div class="category__block">
           <span class="category__item" v-for="(item, index) in getPreparedData" @click="selectCategory(index)">
               {{ item.categoryName }}
           </span>
         </div>
-        <table class="list__summary__main__item" v-show="selectedCategory.length>0" v-for="(item, index) in selectedCategory" @click="selectItem(index)">
-          <tr>
-            <td class="list__summary__heading" colspan="1"><img :src="item.imageName" /></td>
-            <td class="list__summary__heading" colspan="3">{{ item.name }}, 300г.</td>
-          </tr>
-          <tr>
-            <td class="list__summary__item">{{ item.molecules.proteins  }}</td>
-            <td class="list__summary__item">{{ item.molecules.fats }}</td>
-            <td class="list__summary__item">{{ item.molecules.carbonhydrates }}</td>
-            <td class="list__summary__item">{{ item.cCal }}</td>
-          </tr>
-        </table>
+        <div class="list__summary__products">
+          <div class="list__summary__main__item" v-show="selectedCategory.length>0"
+               v-for="(item, index) in selectedCategory" @click="selectItem(index)">
+            <div class="product__head">
+              <img class="product__image" :src="item.imageName"/>
+              <div class="product__head">{{ item.name }}, 300г.</div>
+            </div>
+            <div class="product__attrs">
+              <div class="product__attr">{{ item.molecules.proteins }}</div>
+              <div class="product__attr">{{ item.molecules.fats }}</div>
+              <div class="product__attr">{{ item.molecules.carbonhydrates }}</div>
+              <div class="product__attr">{{ item.cCal }}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <bottomMenu/>
-    <scrollToTop id="#main"/>
+    <scrollToTop id="wrapper"/>
   </div>
 </template>
 
@@ -136,6 +140,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .title_list {
   color: white;
   border-radius: 10px;
@@ -143,8 +148,10 @@ export default {
 }
 
 .add {
+  padding: 10px;
   background: white;
-  height: calc(100% - 175px);
+  border-radius: 16px;
+  box-shadow: 30px 0 0 rgba(247, 169, 69, 0.3);
 }
 </style>
 
@@ -154,16 +161,27 @@ export default {
   border-radius: 10px;
   text-align: center;
 }
-.button_add{
+
+.button_add {
 
 
-  &__button{
-    margin-left: 40%;
-    margin-right: 40%;
+  &__button {
+    display: block;
+    width: 100%;
+    max-width: 60%;
+    background-color: $secondaryColor;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    margin: 10px auto 0;
   }
 }
+
 .list__summary {
   width: 100%;
+  padding-bottom: 30px;
+  border-bottom: 1px solid $lightGrey;
 
   display: flex;
   background: white;
@@ -171,6 +189,7 @@ export default {
   &__table {
     height: 70px;
     width: 100%;
+    border-collapse: collapse;
   }
 
   &__heading {
@@ -179,9 +198,11 @@ export default {
     height: 40px;
     max-height: 40px;
     max-width: 40px;
+    border: 1px solid $lightGrey;
   }
 
   &__item {
+    padding: 10px;
     text-align: center;
 
     height: 100%;
@@ -189,6 +210,7 @@ export default {
     &__wrapper {
       height: 40px;
       max-height: 40px;
+      border: 1px solid $lightGrey;
     }
   }
 
@@ -209,19 +231,108 @@ export default {
   }
 }
 
+
+
 .category {
+  &__title {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 20px;
+  }
+
   &__block {
-    padding: 10px 3px;
+    padding: 10px 3px 10px;
     display: flex;
     align-items: stretch;
+    background: white;
+
+    @include below(768px) {
+      flex-direction: column;
+    }
   }
 
   &__item {
+    width: 100%;
+    margin: 0 10px;
+    background-color: $secondaryColor;
     line-height: 1.2;
-    font-size: 15px;
+    font-size: 22px;
     min-width: 60px;
-    padding: 0 10px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+
+    @include below(768px) {
+      width: auto;
+      margin-bottom: 10px;
+    }
+
+    transition: all 0.3s ease;
+
+    &:hover, &:focus, &.is-active {
+      background-color: darken($secondaryColor, 10%);
+    }
+  }
+}
+
+.list__summary__products {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: $white;
+
+  .list__summary__main__item {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 2 - 30px);
+    margin: 0 15px 15px;
+    padding: 20px;
+    border: 2px solid $lightGrey;
+    border-radius: 6px;
+    cursor: pointer;
+
+    @include below(768px) {
+      width: 100%;
+    }
   }
 
+  .product__head {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  .product__image {
+    max-width: 40%;
+    width: 100%;
+    margin-right: 10px;
+  }
+
+  .product__head {
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .product__attrs {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .product__attr {
+    width: 100%;
+
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid $lightGrey;
+  }
 }
 </style>
