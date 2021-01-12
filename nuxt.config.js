@@ -6,6 +6,10 @@ export default {
     host: settings.host,
   },
   mode: 'spa',
+  target: 'static',
+  router: {
+    base: '/calories/'
+  },
   /*
   ** Headers of the page
   */
