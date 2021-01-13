@@ -37,11 +37,11 @@
         </table>
 
       </div>
-
+      <bottomMenu style="padding-top: 10px"/>
+      <scrollToTop id="#main"/>
     </div>
 
-    <bottomMenu/>
-    <scrollToTop id="#main"/>
+
   </div>
 </template>
 

@@ -3,35 +3,35 @@
     <div class="container">
       <h2 class="title_list">Добавить</h2>
       <div class="add">
-        <div class="list__summary">
-          <table class="list__summary__table" v-show="this.selectedItem!==null">
-            <tr>
-              <td class="list__summary__heading">Белки</td>
-              <td class="list__summary__heading">Жиры</td>
-              <td class="list__summary__heading">Углеводы</td>
-              <td class="list__summary__heading">Калории</td>
-            </tr>
-            <tr>
-              <td class="list__summary__item__wrapper">
-                <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).proteins }}</div>
-              </td>
-              <td class="list__summary__item__wrapper">
-                <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).fats }}</div>
-              </td>
-              <td class="list__summary__item__wrapper">
-                <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).carbonhydrates }}</div>
-              </td>
-              <td class="list__summary__item__wrapper">
-                <div class="list__summary__item">{{ (selectedItem || {}).cCal }}</div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="4" class="button_add">
-                <button class="button_add__button" @click="addFood()">Добавить</button>
-              </td>
-            </tr>
-          </table>
-        </div>
+<!--        <div class="list__summary">-->
+<!--          <table class="list__summary__table" v-show="this.selectedItem!==null">-->
+<!--            <tr>-->
+<!--              <td class="list__summary__heading">Белки</td>-->
+<!--              <td class="list__summary__heading">Жиры</td>-->
+<!--              <td class="list__summary__heading">Углеводы</td>-->
+<!--              <td class="list__summary__heading">Калории</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td class="list__summary__item__wrapper">-->
+<!--                <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).proteins }}</div>-->
+<!--              </td>-->
+<!--              <td class="list__summary__item__wrapper">-->
+<!--                <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).fats }}</div>-->
+<!--              </td>-->
+<!--              <td class="list__summary__item__wrapper">-->
+<!--                <div class="list__summary__item">{{ ((selectedItem || {}).molecules || {}).carbonhydrates }}</div>-->
+<!--              </td>-->
+<!--              <td class="list__summary__item__wrapper">-->
+<!--                <div class="list__summary__item">{{ (selectedItem || {}).cCal }}</div>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="4" class="button_add">-->
+<!--                <button class="button_add__button" @click="addFood()">Добавить</button>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </div>-->
         <h3 class="category__title">Выберите категорию: </h3>
         <div class="category__block">
           <span class="category__item" v-for="(item, index) in getPreparedData" @click="selectCategory(index)">
@@ -50,6 +50,9 @@
               <div class="product__attr">{{ item.molecules.fats }}</div>
               <div class="product__attr">{{ item.molecules.carbonhydrates }}</div>
               <div class="product__attr">{{ item.cCal }}</div>
+            </div>
+            <div class="button_add">
+              <button class="button_add__button" @click="addFood(index)">Добавить</button>
             </div>
           </div>
         </div>
@@ -86,6 +89,7 @@ export default {
 
   methods: {
     addFood(e) {
+      this.selectedItem = this.selectedCategory[e];
       this.$store.commit('food/addFood', {
         name: this.selectedItem.name,
         squirrels: this.selectedItem.molecules.proteins,

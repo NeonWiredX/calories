@@ -29,7 +29,9 @@ export const getters = {
     return (calories==0)?calories:100;
   },
   getNeededSteps(state){
-
-    return 500;
+    var steps = state.food.reduce(function (acc,curr){
+      return acc+ (+curr.steps);
+    },0);
+    return steps;
   }
 };
