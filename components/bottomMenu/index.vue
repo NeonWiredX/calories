@@ -72,7 +72,7 @@ export default {
   display: block;
   width: 100%;
   max-width: 820px;
-  margin: 65px auto;
+  //margin: 65px auto;
   justify-content: space-between;
 
   &__wrapper {
